@@ -15,16 +15,16 @@
       <h1 class="text-center m-4">Carbon Footprint Calculator</h1>
       <ul class="nav nav-tabs justify-content-center">
         <li class="nav-item">
-          <button class="nav-link waves-effect active" id="house-button" onclick="changeTab('house'); changeLayout()">House</button>
+          <button class="nav-link active" id="house-button" onclick="changeTab('house'); changeLayout()">House</button>
         </li>
         <li class="nav-item">
-          <button class="nav-link waves-effect" id="transport-button" onclick="changeTab('transport'); changeLayout()">Transport</button>
+          <button class="nav-link" id="transport-button" onclick="changeTab('transport'); changeLayout()">Transport</button>
         </li>
         <li class="nav-item">
-         <button class="nav-link waves-effect" id="recycle-button" onclick="changeTab('recycle'); changeLayout()">Recycle</button>
+         <button class="nav-link" id="recycle-button" onclick="changeTab('recycle'); changeLayout()">Recycle</button>
         </li>
         <li class="nav-item">
-          <button class="nav-link waves-effect" id="result-button" onclick="changeTab('result'); changeLayout()">Result</button>
+          <button class="nav-link" id="result-button" onclick="changeTab('result'); changeLayout()">Result</button>
          </li>
       </ul>
 
@@ -42,7 +42,7 @@
           <label for="oil-usage" class="form-label">Enter your monthly oil bill:</label>
           <input type="number" class="form-control" id="oil-usage">
         </div>
-        <button type="button" class="btn btn-primary waves-effect" onclick="changeTab('transport'); changeLayout()">Next</button>
+        <button type="button" class="btn btn-primary" onclick="changeTab('transport'); changeLayout()">Next</button>
       </form>
 
       <form id="transport-form" class="d-none">
@@ -64,8 +64,8 @@
           <label for="flight-over-usage" class="form-label">Enter the amounts of flights over 4 hours that you have taken in the past year:</label>
           <input type="number" class="form-control" id="flight-over-usage">
         </div>
-        <button type="button" class="btn btn-secondary waves-effect" onclick="changeTab('house'); changeLayout()">Previous</button>
-        <button type="button" class="btn btn-primary waves-effect" onclick="changeTab('recycle'); changeLayout()">Next</button>
+        <button type="button" class="btn btn-secondary" onclick="changeTab('house'); changeLayout()">Previous</button>
+        <button type="button" class="btn btn-primary" onclick="changeTab('recycle'); changeLayout()">Next</button>
       </form>
 
       <form id="recycle-form" class="d-none">
@@ -84,14 +84,14 @@
           <input class="form-check-input" type="radio" id="aluminumNo" name="aluminum" value="no">
           <label for="no-aluminum" class="form-check-label">No</label>
         </div>
-        <button type="button" class="btn btn-secondary waves-effect" onclick="changeTab('transport'); changeLayout()">Previous</button>
-        <button type="button" class="btn btn-primary waves-effect" onclick="changeTab('result'); changeLayout()">Next</button>
+        <button type="button" class="btn btn-secondary" onclick="changeTab('transport'); changeLayout()">Previous</button>
+        <button type="button" class="btn btn-primary" onclick="changeTab('result'); changeLayout()">Next</button>
       </form>
 
       <form id="result-form" class="d-none">
         <h2 class="text-center m-4">Result</h2>
         
-        <button type="button" class="btn btn-secondary waves-effect" onclick="changeTab('recycle'); changeLayout()">Previous</button>
+        <button type="button" class="btn btn-secondary" onclick="changeTab('recycle'); changeLayout()">Previous</button>
       </form>
     </div>
 

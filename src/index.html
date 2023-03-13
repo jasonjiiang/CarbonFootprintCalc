@@ -53,12 +53,12 @@
         </div>
         <div class="mb-3">
           <label for="flight-usage" class="form-label">Do you travel by flight?</label>
-          <br> <input class="form-check-input" type="radio" id="flightYes" name="flight" value="yes">
+          <br> <input class="form-check-input" type="radio" id="flightYes" name="flight" value="yes" onclick="enableFlight()">
           <label for="yes-flight" class="form-check-label">Yes</label>
-          <input class="form-check-input" type="radio" id="flightNo" name="flight" value="no">
+          <input class="form-check-input" type="radio" id="flightNo" name="flight" value="no" onclick="disableFlight()">
           <label for="no-flight" class="form-check-label">No</label>
         </div>
-        <div class="mb-3">
+        <div class="mb-3 d-none" id="flights-taken">
           <label for="flight-less-usage" class="form-label">Enter the amounts of flights less than 4 hours that you have taken in the past year:</label>
           <input type="number" class="form-control" id="flight-less-usage">
           <label for="flight-over-usage" class="form-label">Enter the amounts of flights over 4 hours that you have taken in the past year:</label>

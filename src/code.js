@@ -1,5 +1,5 @@
-var currentTab = "house";
-var prevTab;
+let currentTab = "house";
+let prevTab;
 
 function changeTab(tab) {
     prevTab = currentTab;
@@ -19,6 +19,18 @@ function changeLayout()
         document.getElementById(prevTab+"-form").classList.add("d-none");
         document.getElementById(prevTab+"-form").classList.remove("d-block");
     }
+}
+
+function enableFlight()
+{
+    document.getElementById("flights-taken").classList.add("d-block");
+    document.getElementById("flights-taken").classList.remove("d-none");
+}
+
+function disableFlight()
+{
+    document.getElementById("flights-taken").classList.add("d-none");
+    document.getElementById("flights-taken").classList.remove("d-block");
 }
 
 window.onload = function()

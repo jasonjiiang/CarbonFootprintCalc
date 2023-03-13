@@ -6,8 +6,94 @@
     <title>Home | Carbon Footprint Calculator</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   </head>
+
   <body>
     <script src="code.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+    <div class="container">
+      <h1 class="text-center m-4">Carbon Footprint Calculator</h1>
+      <ul class="nav nav-tabs justify-content-center">
+        <li class="nav-item">
+          <button class="nav-link waves-effect active" id="house-button" onclick="changeTab('house'); changeLayout()">House</button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link waves-effect" id="transport-button" onclick="changeTab('transport'); changeLayout()">Transport</button>
+        </li>
+        <li class="nav-item">
+         <button class="nav-link waves-effect" id="recycle-button" onclick="changeTab('recycle'); changeLayout()">Recycle</button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link waves-effect" id="result-button" onclick="changeTab('result'); changeLayout()">Result</button>
+         </li>
+      </ul>
+
+      <form id="house-form">
+        <h2 class="text-center m-4">House</h2>
+        <div class="mb-3">
+          <label for="electricity-usage" class="form-label">Enter your monthly electricity bill:</label>
+          <input type="number" class="form-control" id="electricity-usage">
+        </div>
+        <div class="mb-3">
+          <label for="gas-usage" class="form-label">Enter your monthly gas bill:</label>
+          <input type="number" class="form-control" id="gas-usage">
+        </div>
+        <div class="mb-3">
+          <label for="oil-usage" class="form-label">Enter your monthly oil bill:</label>
+          <input type="number" class="form-control" id="oil-usage">
+        </div>
+        <button type="button" class="btn btn-primary waves-effect" onclick="changeTab('transport'); changeLayout()">Next</button>
+      </form>
+
+      <form id="transport-form" class="d-none">
+        <h2 class="text-center m-4">Transport</h2>
+        <div class="mb-3">
+          <label for="car-usage" class="form-label">Enter your total yearly mileage by car:</label>
+          <input type="number" class="form-control" id="car-usage">
+        </div>
+        <div class="mb-3">
+          <label for="flight-usage" class="form-label">Do you travel by flight?</label>
+          <br> <input class="form-check-input" type="radio" id="flightYes" name="flight" value="yes">
+          <label for="yes-flight" class="form-check-label">Yes</label>
+          <input class="form-check-input" type="radio" id="flightNo" name="flight" value="no">
+          <label for="no-flight" class="form-check-label">No</label>
+        </div>
+        <div class="mb-3">
+          <label for="flight-less-usage" class="form-label">Enter the amounts of flights less than 4 hours that you have taken in the past year:</label>
+          <input type="number" class="form-control" id="flight-less-usage">
+          <label for="flight-over-usage" class="form-label">Enter the amounts of flights over 4 hours that you have taken in the past year:</label>
+          <input type="number" class="form-control" id="flight-over-usage">
+        </div>
+        <button type="button" class="btn btn-secondary waves-effect" onclick="changeTab('house'); changeLayout()">Previous</button>
+        <button type="button" class="btn btn-primary waves-effect" onclick="changeTab('recycle'); changeLayout()">Next</button>
+      </form>
+
+      <form id="recycle-form" class="d-none">
+        <h2 class="text-center m-4">Recycle</h2>
+        <div class="mb-3">
+          <label for="newspaper-usage" class="form-label">Do you recycle newspaper?</label>
+          <br> <input class="form-check-input" type="radio" id="newspaperYes" name="newspaper" value="yes">
+          <label for="yes-newspaper" class="form-check-label">Yes</label>
+          <input class="form-check-input" type="radio" id="newspaperNo" name="newspaper" value="no">
+          <label for="no-newspaper" class="form-check-label">No</label>
+        </div>
+        <div class="mb-3">
+          <label for="aluminum-usage" class="form-label">Do you recycle aluminum and tin?</label>
+          <br> <input class="form-check-input" type="radio" id="aluminumYes" name="aluminum" value="yes">
+          <label for="yes-aluminum" class="form-check-label">Yes</label>
+          <input class="form-check-input" type="radio" id="aluminumNo" name="aluminum" value="no">
+          <label for="no-aluminum" class="form-check-label">No</label>
+        </div>
+        <button type="button" class="btn btn-secondary waves-effect" onclick="changeTab('transport'); changeLayout()">Previous</button>
+        <button type="button" class="btn btn-primary waves-effect" onclick="changeTab('result'); changeLayout()">Next</button>
+      </form>
+
+      <form id="result-form" class="d-none">
+        <h2 class="text-center m-4">Result</h2>
+        
+        <button type="button" class="btn btn-secondary waves-effect" onclick="changeTab('recycle'); changeLayout()">Previous</button>
+      </form>
+    </div>
+
   </body>
 </html>

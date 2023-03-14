@@ -6,19 +6,30 @@ function changeTab(tab) {
     currentTab = tab;
 }
 
-function changeLayout()
+function changeLayout(tab)
 {
+    changeTab(tab)
     if (currentTab != prevTab)
     {
-        //Changes tab bar
-        document.getElementById(currentTab+"-button").classList.add("active");
-        document.getElementById(prevTab+"-button").classList.remove("active");
-        //Changes calculator form
-        document.getElementById(currentTab+"-form").classList.add("d-block");
-        document.getElementById(currentTab+"-form").classList.remove("d-none");
-        document.getElementById(prevTab+"-form").classList.add("d-none");
-        document.getElementById(prevTab+"-form").classList.remove("d-block");
+        changeTab();
+        changeCalc();
     }
+}
+
+function changeTab()
+{
+    //Changes tab bar
+    document.getElementById(currentTab+"-button").classList.add("active");
+    document.getElementById(prevTab+"-button").classList.remove("active");
+}
+
+function changeCalc()
+{
+    //Changes calculator form
+    document.getElementById(currentTab+"-form").classList.add("d-block");
+    document.getElementById(currentTab+"-form").classList.remove("d-none");
+    document.getElementById(prevTab+"-form").classList.add("d-none");
+    document.getElementById(prevTab+"-form").classList.remove("d-block");
 }
 
 function enableFlight()

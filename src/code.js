@@ -34,6 +34,32 @@ function extraForm(vis, div)
     }
 }
 
+function onCarAmount(num)
+{
+
+    let p = '<p class="text-danger" id="car-error">Number must be over zero</p>';
+    let pExist = document.getElementById("car-error");
+
+    if (num <= 0)
+    {
+        if (!pExist)
+        {
+            document.getElementById("car-usage").insertAdjacentHTML('beforebegin', p);
+        }
+    } else {
+        if (pExist)
+        {
+            pExist.removeChild(pExist);
+        }
+        //Create new elements for the new form inputs as it is dynamic, runs during runtime. Whereas the others are static and does not need to change
+        for (let i = 1; i <= num; i++)
+        {
+            let title = '<h4>Car ' + i + '</h3>';
+            document.getElementById("car-usage").insertAdjacentHTML('beforebegin', title);
+        }
+    }
+}
+
 window.onload = function()
 {
     

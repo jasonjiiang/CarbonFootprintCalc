@@ -50,11 +50,22 @@
         <h2 class="text-center m-4">Transport</h2>
         <div class="mb-3">
           <label for="own-car" class="form-label">Do you own a car?</label>
-          <br> <input class="form-check-input" type="radio" id="carYes" name="car" value="yes" onclick="extraForm(true, 'car-usage')">
+          <br> <input class="form-check-input" type="radio" id="carYes" name="car" value="yes" onclick="extraForm(true, 'multiple-car')">
           <label for="yes-car" class="form-check-label">Yes</label>
-          <input class="form-check-input" type="radio" id="carNo" name="car" value="no" onclick="extraForm(false, 'car-usage')">
+          <input class="form-check-input" type="radio" id="carNo" name="car" value="no" onclick="extraForm(false, 'multiple-car')">
           <label for="no-car" class="form-check-label">No</label>
         </div>
+        <div class="mb-3 d-none" id="multiple-car">
+          <label for="multiple-car" class="form-label">Do you own multiple cars?</label>
+          <br> <input class="form-check-input" type="radio" id="multipleYes" name="multiple" value="yes" onclick="extraForm(true, 'car-amount')">
+          <label for="yes-multiple" class="form-check-label">Yes</label>
+          <input class="form-check-input" type="radio" id="multipleNo" name="multiple" value="no" onclick="extraForm(false, 'car-amount')">
+          <label for="no-multiple" class="form-check-label">No</label>
+        </div>
+        <div class="mb-3 d-none" id="car-amount">
+            <label for="car-usage" class="form-label">Enter amount of cars:</label>
+            <input type="number" class="form-control" id="car-amount-input" min="1" onchange="onCarAmount(document.getElementById('car-amount-input').value)">
+          </div>
         <div class="mb-3 d-none" id="car-usage">
           <label for="car-usage" class="form-label">Enter your total yearly mileage by car:</label>
           <input type="number" class="form-control" id="car-usage">

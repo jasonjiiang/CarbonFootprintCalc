@@ -13,6 +13,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     
     <div id="parent">
+
+      <!--ABOUT WEBSITE SECTION-->
+
       <div class="container">
         <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center text-white">
           <h1 class="pb-4">Welcome</h1>
@@ -20,9 +23,13 @@
         </div>
       </div>
 
+      <!--CALCULATOR FORM SECTION-->
+
       <div class="container">
         <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
           <h1 class="text-white pb-4">Carbon Footprint Calculator</h1>
+
+          <!--NAVIGATION BAR FOR CALCULATOR FORM-->
 
           <div class="overflow-auto" id="calculator">
             <ul class="nav nav-tabs justify-content-center">
@@ -39,6 +46,8 @@
                 <button class="nav-link" id="result-button" onclick="changeLayout('result')">Result</button>
                </li>
             </ul>
+
+            <!--HOUSE SECTION FOR CALCULATOR FORM-->
       
             <form id="house-form">
               <h2 class="text-center p-4">House</h2>
@@ -59,6 +68,8 @@
                 <br> <button type="button" class="btn btn-primary" onclick="changeLayout('transport')">Next</button>
               </div>
             </form>
+
+            <!--TRANSPORT SECTION FOR CALCULATOR FORM-->
       
             <form id="transport-form" class="d-none">
               <h2 class="text-center p-4">Transport</h2>
@@ -92,6 +103,8 @@
                 <button type="button" class="btn btn-primary" onclick="changeLayout('recycle')">Next</button>
               </div>
             </form>
+
+            <!--RECYCLE SECTION FOR CALCULATOR FORM-->
       
             <form id="recycle-form" class="d-none">
               <h2 class="text-center p-4">Recycle</h2>
@@ -115,6 +128,8 @@
                 <button type="button" class="btn btn-primary" onclick="changeLayout('result')">Next</button>
               </div>
             </form>
+
+            <!--RESULT SECTION FOR CALCULATOR FORM-->
       
             <form id="result-form" class="d-none">
               <h2 class="text-center p-4">Result</h2>
@@ -127,8 +142,9 @@
             </form>
           </div>
         </div>
-
       </div>
+
+      <!--FAQ SECTION-->
 
       <div class="container">
         <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center text-white">

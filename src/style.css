@@ -1,0 +1,11 @@
+.parent {
+    height: 100vh;
+    scroll-snap-type: y mandatory;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.container {
+    height: 100vh;
+    scroll-snap-align: start;
+}

@@ -1,4 +1,8 @@
-.parent {
+body {
+    background-image: url(/assets/pexels-luis-dalvan-1770809.jpg);
+}
+
+#parent {
     height: 100vh;
     scroll-snap-type: y mandatory;
     overflow: scroll;
@@ -8,4 +12,10 @@
 .container {
     height: 100vh;
     scroll-snap-align: start;
+}
+
+#calculator {
+    height: 50vh;
+    background-color: white;
+    border-radius: 40px;
 }

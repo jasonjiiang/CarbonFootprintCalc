@@ -1,0 +1,25 @@
+body {
+    background-image: url('../assets/pexels-pixabay-163703.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#parent {
+    height: 100vh;
+    scroll-snap-type: y mandatory;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.container {
+    scroll-snap-align: start;
+}
+
+#calculator {
+    height: 50vh;
+    width: 60vw;
+    background-color: white;
+    border-radius: 40px;
+    opacity: 97.5%;
+}

@@ -23,3 +23,13 @@ body {
     border-radius: 40px;
     opacity: 97.5%;
 }
+.panel-body {
+ color: black;
+ font-size: medium;
+
+}
+
+.panel-title
+{
+    font-weight:  bold;
+}

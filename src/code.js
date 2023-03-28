@@ -60,7 +60,36 @@ function onCarAmount(num)
     }
 }
 
-window.onload = function()
-{
+ //Function to calculate the total carbon footprint
+ function calculateCarbonFootprint() {
+    //Get the values entered in the form
+    const electricityUsage = Number(document.getElementById("electricity-usage").value);
+    const gasUsage = Number(document.getElementById("gas-usage").value);
+    const oilUsage = Number(document.getElementById("oil-usage").value);
+    const carMileage = Number(document.getElementById("car-mileage").value);
+    const flightsShort = Number(document.getElementById("flight-less-usage").value);
+    const flightsLong = Number(document.getElementById("flight-over-usage").value);
+    const newspaperRecycling = document.getElementById("newspaperYes").checked;
+    const aluminumRecycling = document.getElementById("aluminumYes").checked;
     
-}
+    //Calculate the total carbon footprint
+    let totalCarbonFootprint = (electricityUsage * 105) + (gasUsage * 105) + (oilUsage * 113) + (carMileage * 0.79) + (flightsShort * 1100) + (flightsLong * 4400);
+    if (!newspaperRecycling) {
+    totalCarbonFootprint += 184;
+    }
+    if (!aluminumRecycling) {
+    totalCarbonFootprint += 166;
+    }
+    //Debugging
+    console.log(electricityUsage);
+    console.log(gasUsage);
+    console.log(oilUsage);
+    console.log(carMileage);
+    console.log(flightsShort);
+    console.log(flightsLong);
+    console.log(newspaperRecycling);
+    console.log(aluminumRecycling);
+    console.log(totalCarbonFootprint);
+    //Display the result
+    document.getElementById("carbonresult").innerHTML = `Your total carbon footprint is ${totalCarbonFootprint.toFixed(2)} kg CO<sub>2</sub>e per year.`;
+} 

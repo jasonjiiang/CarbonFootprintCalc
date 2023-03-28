@@ -112,7 +112,7 @@
               </div>
               <div class="mx-5 my-3 d-none" id="car-usage">
                 <label for="car-usage" class="form-label">Enter your total yearly mileage by car:</label>
-                <input type="number" class="form-control" id="car-usage">
+                <input type="number" class="form-control" id="car-mileage">
               </div>
               <div class="mx-5 my-3">
                 <label for="flight-usage" class="form-label">Do you travel by flight?</label>
@@ -155,7 +155,7 @@
               <div class="mx-5 my-3">
                 <label for="recycle-result" class="form-label" id="recycle-result">Your carbon footprint emissions from "Recycle":</label>
                 <br> <button type="button" class="btn btn-secondary" onclick="changeLayout('transport')">Previous</button>
-                <button type="button" class="btn btn-primary" onclick="changeLayout('result')">Next</button>
+                <button id="recycleNextButton" type="button" class="btn btn-primary" onclick="changeLayout('result');calculateCarbonFootprint();">Next</button>
               </div>
             </form>
 
@@ -164,7 +164,7 @@
             <form id="result-form" class="d-none">
               <h2 class="text-center p-4">Result</h2>
               
-              <h4 class="text-center m-4 text-success">Your total carbon footprint emissions:</h2>
+              <h4 id="carbonresult" class="text-center m-4 text-success">Your total carbon footprint emissions:</h2>
   
               <div class="mx-5 my-3">
                 <br> <button type="button" class="btn btn-secondary" onclick="changeLayout('recycle')">Previous</button>

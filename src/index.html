@@ -64,16 +64,16 @@
           <div class="overflow-auto" id="calculator">
             <ul class="nav nav-tabs justify-content-center">
               <li class="nav-item">
-                <button class="nav-link active" id="house-button" onclick="changeLayout('house')">House</button>
+                <button class="nav-link active" id="house-button" onclick="changeLayout('house');calculateCarbonFootprint();">House</button>
               </li>
               <li class="nav-item">
-                <button class="nav-link" id="transport-button" onclick="changeLayout('transport')">Transport</button>
+                <button class="nav-link" id="transport-button" onclick="changeLayout('transport');calculateCarbonFootprint();">Transport</button>
               </li>
               <li class="nav-item">
-               <button class="nav-link" id="recycle-button" onclick="changeLayout('recycle')">Recycle</button>
+               <button class="nav-link" id="recycle-button" onclick="changeLayout('recycle');calculateCarbonFootprint();">Recycle</button>
               </li>
               <li class="nav-item">
-                <button class="nav-link" id="result-button" onclick="changeLayout('result')">Result</button>
+                <button class="nav-link" id="result-button" onclick="changeLayout('result');calculateCarbonFootprint();">Result</button>
                </li>
             </ul>
 
@@ -94,8 +94,8 @@
                 <input type="number" class="form-control" id="oil-usage">
               </div>
               <div class="mx-5 my-3">
-                <label for="house-result" class="form-label" id="house-result">Your carbon footprint emissions from "House":</label>
-                <br> <button type="button" class="btn btn-primary" onclick="changeLayout('transport')">Next</button>
+                <label for="house-result" class="form-label" id="householdResult">Your carbon footprint emissions from "House":</label>
+                <br> <button type="button" class="btn btn-primary" onclick="changeLayout('transport');calculateCarbonFootprint();">Next</button>
               </div>
             </form>
 
@@ -105,20 +105,20 @@
               <h2 class="text-center p-4">Transport</h2>
               <div class="mx-5 mb-3">
                 <label for="own-car" class="form-label">Do you own a car?</label>
-                <br> <input class="form-check-input" type="radio" id="carYes" name="car" value="yes" onclick="extraForm(true, 'car-usage')">
+                <br> <input class="form-check-input" type="radio" id="carYes" name="car" value="yes" onclick="extraForm(true, 'car-usage');calculateCarbonFootprint();">
                 <label for="yes-car" class="form-check-label">Yes</label>
-                <input class="form-check-input" type="radio" id="carNo" name="car" value="no" onclick="extraForm(false, 'car-usage')">
+                <input class="form-check-input" type="radio" id="carNo" name="car" value="no" onclick="extraForm(false, 'car-usage');calculateCarbonFootprint();">
                 <label for="no-car" class="form-check-label">No</label>
               </div>
               <div class="mx-5 my-3 d-none" id="car-usage">
                 <label for="car-usage" class="form-label">Enter your total yearly mileage by car:</label>
-                <input type="number" class="form-control" id="car-usage">
+                <input type="number" class="form-control" id="car-mileage">
               </div>
               <div class="mx-5 my-3">
                 <label for="flight-usage" class="form-label">Do you travel by flight?</label>
-                <br> <input class="form-check-input" type="radio" id="flightYes" name="flight" value="yes" onclick="extraForm(true, 'flights-taken')">
+                <br> <input class="form-check-input" type="radio" id="flightYes" name="flight" value="yes" onclick="extraForm(true, 'flights-taken');calculateCarbonFootprint();">
                 <label for="yes-flight" class="form-check-label">Yes</label>
-                <input class="form-check-input" type="radio" id="flightNo" name="flight" value="no" onclick="extraForm(false, 'flights-taken')">
+                <input class="form-check-input" type="radio" id="flightNo" name="flight" value="no" onclick="extraForm(false, 'flights-taken');calculateCarbonFootprint();">
                 <label for="no-flight" class="form-check-label">No</label>
               </div>
               <div class="mx-5 my-3 d-none" id="flights-taken">
@@ -128,9 +128,9 @@
                 <input type="number" class="form-control" id="flight-over-usage">
               </div>
               <div class="mx-5 my-3">
-                <label for="transport-result" class="form-label" id="transport-result">Your carbon footprint emissions from "Transport":</label>
-                <br> <button type="button" class="btn btn-secondary" onclick="changeLayout('house')">Previous</button>
-                <button type="button" class="btn btn-primary" onclick="changeLayout('recycle')">Next</button>
+                <label for="transport-result" class="form-label" id="transportResult">Your carbon footprint emissions from "Transport":</label>
+                <br> <button type="button" class="btn btn-secondary" onclick="changeLayout('house');calculateCarbonFootprint();">Previous</button>
+                <button type="button" class="btn btn-primary" onclick="changeLayout('recycle');calculateCarbonFootprint();">Next</button>
               </div>
             </form>
 
@@ -140,22 +140,22 @@
               <h2 class="text-center p-4">Recycle</h2>
               <div class="mx-5 mb-3">
                 <label for="newspaper-usage" class="form-label">Do you recycle newspaper?</label>
-                <br> <input class="form-check-input" type="radio" id="newspaperYes" name="newspaper" value="yes">
+                <br> <input class="form-check-input" type="radio" id="newspaperYes" name="newspaper" value="yes" onclick="calculateCarbonFootprint();">
                 <label for="yes-newspaper" class="form-check-label">Yes</label>
-                <input class="form-check-input" type="radio" id="newspaperNo" name="newspaper" value="no">
+                <input class="form-check-input" type="radio" id="newspaperNo" name="newspaper" value="no" onclick="calculateCarbonFootprint();">
                 <label for="no-newspaper" class="form-check-label">No</label>
               </div>
               <div class="mx-5 my-3">
                 <label for="aluminum-usage" class="form-label">Do you recycle aluminum and tin?</label>
-                <br> <input class="form-check-input" type="radio" id="aluminumYes" name="aluminum" value="yes">
+                <br> <input class="form-check-input" type="radio" id="aluminumYes" name="aluminum" value="yes" onclick="calculateCarbonFootprint();">
                 <label for="yes-aluminum" class="form-check-label">Yes</label>
-                <input class="form-check-input" type="radio" id="aluminumNo" name="aluminum" value="no">
+                <input class="form-check-input" type="radio" id="aluminumNo" name="aluminum" value="no" onclick="calculateCarbonFootprint();">
                 <label for="no-aluminum" class="form-check-label">No</label>
               </div>
               <div class="mx-5 my-3">
-                <label for="recycle-result" class="form-label" id="recycle-result">Your carbon footprint emissions from "Recycle":</label>
-                <br> <button type="button" class="btn btn-secondary" onclick="changeLayout('transport')">Previous</button>
-                <button type="button" class="btn btn-primary" onclick="changeLayout('result')">Next</button>
+                <label for="recycle-result" class="form-label" id="recyclingResult">Your carbon footprint emissions from "Recycle":</label>
+                <br> <button type="button" class="btn btn-secondary" onclick="changeLayout('transport');calculateCarbonFootprint();">Previous</button>
+                <button id="recycleNextButton" type="button" class="btn btn-primary" onclick="changeLayout('result');calculateCarbonFootprint();">Next</button>
               </div>
             </form>
 
@@ -164,10 +164,10 @@
             <form id="result-form" class="d-none">
               <h2 class="text-center p-4">Result</h2>
               
-              <h4 class="text-center m-4 text-success">Your total carbon footprint emissions:</h2>
+              <h4 id="carbonResult" class="text-center m-4 text-success">Your total carbon footprint emissions:</h2>
   
               <div class="mx-5 my-3">
-                <br> <button type="button" class="btn btn-secondary" onclick="changeLayout('recycle')">Previous</button>
+                <br> <button type="button" class="btn btn-secondary" onclick="changeLayout('recycle');calculateCarbonFootprint();">Previous</button>
               </div>
             </form>
           </div>

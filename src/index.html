@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="english">
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Home | Carbon Footprint Calculator</title>
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-      <link href="style.css" rel="stylesheet">
-  </head>
 
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Carbon Footprint Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
     <script src="code.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-
-    <!--NAVIGATION BAR HERE-->
+    
+    <!--NAVIGATION BAR SECTION-->
 
     <nav class="navbar navbar-expand-sm bg-success justify-content-center">
         <ul class="navbar-nav">
@@ -40,27 +41,27 @@
         </ul>
     </nav>
 
-    <!--MAIN CONTENT HERE-->
+    <!--MAIN CONTENT SECTION-->
     
     <div id="parent">
 
-      <!--ABOUT WEBSITE SECTION-->
+        <!--ABOUT WEBSITE SECTION-->
 
-      <div class="container">
-        <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center text-white">
-          <h1 class="pb-4">Welcome</h1>
-          <p class="text-center" >This website calculates the carbon footprint emissions according to the data inputted into the calculator form below</p>
+        <div class="container">
+            <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center text-white">
+                <h1 class="pb-4">Welcome</h1>
+                <p class="text-center">This website calculates the carbon footprint emissions according to the data inputted into the calculator form below</p>
+            </div>
         </div>
-      </div>
 
       <!--CALCULATOR FORM SECTION-->
 
       <div class="container">
         <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
           <h1 class="text-white pb-4">Carbon Footprint Calculator</h1>
-
+          
           <!--NAVIGATION BAR FOR CALCULATOR FORM-->
-
+          
           <div class="overflow-auto" id="calculator">
             <ul class="nav nav-tabs justify-content-center">
               <li class="nav-item">
@@ -76,9 +77,9 @@
                 <button class="nav-link" id="result-button" onclick="changeLayout('result');calculateCarbonFootprint();">Result</button>
                </li>
             </ul>
-
+            
             <!--HOUSE SECTION FOR CALCULATOR FORM-->
-      
+            
             <form id="house-form">
               <h2 class="text-center p-4">House</h2>
               <div class="mx-5 mb-3">
@@ -98,9 +99,9 @@
                 <br> <button type="button" class="btn btn-primary" onclick="changeLayout('transport');calculateCarbonFootprint();">Next</button>
               </div>
             </form>
-
+            
             <!--TRANSPORT SECTION FOR CALCULATOR FORM-->
-      
+            
             <form id="transport-form" class="d-none">
               <h2 class="text-center p-4">Transport</h2>
               <div class="mx-5 mb-3">
@@ -133,9 +134,9 @@
                 <button type="button" class="btn btn-primary" onclick="changeLayout('recycle');calculateCarbonFootprint();">Next</button>
               </div>
             </form>
-
+            
             <!--RECYCLE SECTION FOR CALCULATOR FORM-->
-      
+            
             <form id="recycle-form" class="d-none">
               <h2 class="text-center p-4">Recycle</h2>
               <div class="mx-5 mb-3">
@@ -158,9 +159,9 @@
                 <button id="recycleNextButton" type="button" class="btn btn-primary" onclick="changeLayout('result');calculateCarbonFootprint();">Next</button>
               </div>
             </form>
-
+            
             <!--RESULT SECTION FOR CALCULATOR FORM-->
-      
+            
             <form id="result-form" class="d-none">
               <h2 class="text-center p-4">Result</h2>
               
@@ -172,8 +173,7 @@
             </form>
           </div>
         </div>
-      </div>
-
+        
       <!--FAQ SECTION-->
    
       <div class="container">
@@ -308,10 +308,13 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
                 
         </div>
-      </div>
-    </div>
 
-    <!--FOOTER BAR HERE-->
-    
-  </body>
+        <!--FOOTER SECTION-->
+
+        <footer class="footer">
+            <p>MMU Computer Science Thematical project work <br>
+            </p>
+        </footer>
+    </div>
+</body>
 </html>

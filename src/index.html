@@ -12,7 +12,37 @@
 <body>
     <script src="code.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    
+    <!--NAVIGATION BAR SECTION-->
 
+    <nav class="navbar navbar-expand-sm bg-success justify-content-center">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#">CACULATE</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">OFFSETTING</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">BUSINESS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">INFORMATION</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">ABOUT US</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">CONTACT</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">MY ACCOUNT</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!--MAIN CONTENT SECTION-->
+    
     <div id="parent">
 
         <!--ABOUT WEBSITE SECTION-->
@@ -24,134 +54,259 @@
             </div>
         </div>
 
-        <!--CALCULATOR FORM SECTION-->
+      <!--CALCULATOR FORM SECTION-->
 
-        <div class="container">
-            <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
-                <h1 class="text-white pb-4">Carbon Footprint Calculator</h1>
-
-                <!--NAVIGATION BAR FOR CALCULATOR FORM-->
-
-                <div class="overflow-auto" id="calculator">
-                    <ul class="nav nav-tabs justify-content-center">
-                        <li class="nav-item">
-                            <button class="nav-link active" id="house-button" onclick="changeLayout('house')">House</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link" id="transport-button" onclick="changeLayout('transport')">Transport</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link" id="recycle-button" onclick="changeLayout('recycle')">Recycle</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link" id="result-button" onclick="changeLayout('result')">Result</button>
-                        </li>
-                    </ul>
-
-                    <!--HOUSE SECTION FOR CALCULATOR FORM-->
-
-                    <form id="house-form">
-                        <h2 class="text-center p-4">House</h2>
-                        <div class="mx-5 mb-3">
-                            <label for="electricity-usage" class="form-label">Enter your monthly electricity bill:</label>
-                            <input type="number" class="form-control" id="electricity-usage">
-                        </div>
-                        <div class="mx-5 my-3">
-                            <label for="gas-usage" class="form-label">Enter your monthly gas bill:</label>
-                            <input type="number" class="form-control" id="gas-usage">
-                        </div>
-                        <div class="mx-5 my-3">
-                            <label for="oil-usage" class="form-label">Enter your monthly oil bill:</label>
-                            <input type="number" class="form-control" id="oil-usage">
-                        </div>
-                        <div class="mx-5 my-3">
-                            <label for="house-result" class="form-label" id="house-result">Your carbon footprint emissions from "House":</label>
-                            <br> <button type="button" class="btn btn-primary" onclick="changeLayout('transport')">Next</button>
-                        </div>
-                    </form>
-
-                    <!--TRANSPORT SECTION FOR CALCULATOR FORM-->
-
-                    <form id="transport-form" class="d-none">
-                        <h2 class="text-center p-4">Transport</h2>
-                        <div class="mx-5 mb-3">
-                            <label for="own-car" class="form-label">Do you own a car?</label>
-                            <br> <input class="form-check-input" type="radio" id="carYes" name="car" value="yes" onclick="extraForm(true, 'car-usage')">
-                            <label for="yes-car" class="form-check-label">Yes</label>
-                            <input class="form-check-input" type="radio" id="carNo" name="car" value="no" onclick="extraForm(false, 'car-usage')">
-                            <label for="no-car" class="form-check-label">No</label>
-                        </div>
-                        <div class="mx-5 my-3 d-none" id="car-usage">
-                            <label for="car-usage" class="form-label">Enter your total yearly mileage by car:</label>
-                            <input type="number" class="form-control" id="car-usage">
-                        </div>
-                        <div class="mx-5 my-3">
-                            <label for="flight-usage" class="form-label">Do you travel by flight?</label>
-                            <br> <input class="form-check-input" type="radio" id="flightYes" name="flight" value="yes" onclick="extraForm(true, 'flights-taken')">
-                            <label for="yes-flight" class="form-check-label">Yes</label>
-                            <input class="form-check-input" type="radio" id="flightNo" name="flight" value="no" onclick="extraForm(false, 'flights-taken')">
-                            <label for="no-flight" class="form-check-label">No</label>
-                        </div>
-                        <div class="mx-5 my-3 d-none" id="flights-taken">
-                            <label for="flight-less-usage" class="form-label">Enter the amounts of flights less than 4 hours that you have taken in the past year:</label>
-                            <input type="number" class="form-control" id="flight-less-usage">
-                            <label for="flight-over-usage" class="form-label">Enter the amounts of flights over 4 hours that you have taken in the past year:</label>
-                            <input type="number" class="form-control" id="flight-over-usage">
-                        </div>
-                        <div class="mx-5 my-3">
-                            <label for="transport-result" class="form-label" id="transport-result">Your carbon footprint emissions from "Transport":</label>
-                            <br> <button type="button" class="btn btn-secondary" onclick="changeLayout('house')">Previous</button>
-                            <button type="button" class="btn btn-primary" onclick="changeLayout('recycle')">Next</button>
-                        </div>
-                    </form>
-
-                    <!--RECYCLE SECTION FOR CALCULATOR FORM-->
-
-                    <form id="recycle-form" class="d-none">
-                        <h2 class="text-center p-4">Recycle</h2>
-                        <div class="mx-5 mb-3">
-                            <label for="newspaper-usage" class="form-label">Do you recycle newspaper?</label>
-                            <br> <input class="form-check-input" type="radio" id="newspaperYes" name="newspaper" value="yes">
-                            <label for="yes-newspaper" class="form-check-label">Yes</label>
-                            <input class="form-check-input" type="radio" id="newspaperNo" name="newspaper" value="no">
-                            <label for="no-newspaper" class="form-check-label">No</label>
-                        </div>
-                        <div class="mx-5 my-3">
-                            <label for="aluminum-usage" class="form-label">Do you recycle aluminum and tin?</label>
-                            <br> <input class="form-check-input" type="radio" id="aluminumYes" name="aluminum" value="yes">
-                            <label for="yes-aluminum" class="form-check-label">Yes</label>
-                            <input class="form-check-input" type="radio" id="aluminumNo" name="aluminum" value="no">
-                            <label for="no-aluminum" class="form-check-label">No</label>
-                        </div>
-                        <div class="mx-5 my-3">
-                            <label for="recycle-result" class="form-label" id="recycle-result">Your carbon footprint emissions from "Recycle":</label>
-                            <br> <button type="button" class="btn btn-secondary" onclick="changeLayout('transport')">Previous</button>
-                            <button type="button" class="btn btn-primary" onclick="changeLayout('result')">Next</button>
-                        </div>
-                    </form>
-
-                    <!--RESULT SECTION FOR CALCULATOR FORM-->
-
-                    <form id="result-form" class="d-none">
-                        <h2 class="text-center p-4">Result</h2>
-
-                        <h4 class="text-center m-4 text-success">Your total carbon footprint emissions:</h2>
-
-                            <div class="mx-5 my-3">
-                                <br> <button type="button" class="btn btn-secondary" onclick="changeLayout('recycle')">Previous</button>
-                            </div>
-                    </form>
+      <div class="container">
+        <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+          <h1 class="text-white pb-4">Carbon Footprint Calculator</h1>
+          
+          <!--NAVIGATION BAR FOR CALCULATOR FORM-->
+          
+          <div class="overflow-auto" id="calculator">
+            <ul class="nav nav-tabs justify-content-center">
+              <li class="nav-item">
+                <button class="nav-link active" id="house-button" onclick="changeLayout('house');calculateCarbonFootprint();">House</button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link" id="transport-button" onclick="changeLayout('transport');calculateCarbonFootprint();">Transport</button>
+              </li>
+              <li class="nav-item">
+               <button class="nav-link" id="recycle-button" onclick="changeLayout('recycle');calculateCarbonFootprint();">Recycle</button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link" id="result-button" onclick="changeLayout('result');calculateCarbonFootprint();">Result</button>
+               </li>
+            </ul>
+            
+            <!--HOUSE SECTION FOR CALCULATOR FORM-->
+            
+            <form id="house-form">
+              <h2 class="text-center p-4">House</h2>
+              <div class="mx-5 mb-3">
+                <label for="electricity-usage" class="form-label">Enter your monthly electricity bill:</label>
+                <input type="number" class="form-control" id="electricity-usage">
+              </div>
+              <div class="mx-5 my-3">
+                <label for="gas-usage" class="form-label">Enter your monthly gas bill:</label>
+                <input type="number" class="form-control" id="gas-usage">
+              </div>
+              <div class="mx-5 my-3">
+                <label for="oil-usage" class="form-label">Enter your monthly oil bill:</label>
+                <input type="number" class="form-control" id="oil-usage">
+              </div>
+              <div class="mx-5 my-3">
+                <label for="house-result" class="form-label" id="householdResult">Your carbon footprint emissions from "House":</label>
+                <br> <button type="button" class="btn btn-primary" onclick="changeLayout('transport');calculateCarbonFootprint();">Next</button>
+              </div>
+            </form>
+            
+            <!--TRANSPORT SECTION FOR CALCULATOR FORM-->
+            
+            <form id="transport-form" class="d-none">
+              <h2 class="text-center p-4">Transport</h2>
+              <div class="mx-5 mb-3">
+                <label for="own-car" class="form-label">Do you own a car?</label>
+                <br> <input class="form-check-input" type="radio" id="carYes" name="car" value="yes" onclick="extraForm(true, 'car-usage');calculateCarbonFootprint();">
+                <label for="yes-car" class="form-check-label">Yes</label>
+                <input class="form-check-input" type="radio" id="carNo" name="car" value="no" onclick="extraForm(false, 'car-usage');calculateCarbonFootprint();">
+                <label for="no-car" class="form-check-label">No</label>
+              </div>
+              <div class="mx-5 my-3 d-none" id="car-usage">
+                <label for="car-usage" class="form-label">Enter your total yearly mileage by car:</label>
+                <input type="number" class="form-control" id="car-mileage">
+              </div>
+              <div class="mx-5 my-3">
+                <label for="flight-usage" class="form-label">Do you travel by flight?</label>
+                <br> <input class="form-check-input" type="radio" id="flightYes" name="flight" value="yes" onclick="extraForm(true, 'flights-taken');calculateCarbonFootprint();">
+                <label for="yes-flight" class="form-check-label">Yes</label>
+                <input class="form-check-input" type="radio" id="flightNo" name="flight" value="no" onclick="extraForm(false, 'flights-taken');calculateCarbonFootprint();">
+                <label for="no-flight" class="form-check-label">No</label>
+              </div>
+              <div class="mx-5 my-3 d-none" id="flights-taken">
+                <label for="flight-less-usage" class="form-label">Enter the amounts of flights less than 4 hours that you have taken in the past year:</label>
+                <input type="number" class="form-control" id="flight-less-usage">
+                <label for="flight-over-usage" class="form-label">Enter the amounts of flights over 4 hours that you have taken in the past year:</label>
+                <input type="number" class="form-control" id="flight-over-usage">
+              </div>
+              <div class="mx-5 my-3">
+                <label for="transport-result" class="form-label" id="transportResult">Your carbon footprint emissions from "Transport":</label>
+                <br> <button type="button" class="btn btn-secondary" onclick="changeLayout('house');calculateCarbonFootprint();">Previous</button>
+                <button type="button" class="btn btn-primary" onclick="changeLayout('recycle');calculateCarbonFootprint();">Next</button>
+              </div>
+            </form>
+            
+            <!--RECYCLE SECTION FOR CALCULATOR FORM-->
+            
+            <form id="recycle-form" class="d-none">
+              <h2 class="text-center p-4">Recycle</h2>
+              <div class="mx-5 mb-3">
+                <label for="newspaper-usage" class="form-label">Do you recycle newspaper?</label>
+                <br> <input class="form-check-input" type="radio" id="newspaperYes" name="newspaper" value="yes" onclick="calculateCarbonFootprint();">
+                <label for="yes-newspaper" class="form-check-label">Yes</label>
+                <input class="form-check-input" type="radio" id="newspaperNo" name="newspaper" value="no" onclick="calculateCarbonFootprint();">
+                <label for="no-newspaper" class="form-check-label">No</label>
+              </div>
+              <div class="mx-5 my-3">
+                <label for="aluminum-usage" class="form-label">Do you recycle aluminum and tin?</label>
+                <br> <input class="form-check-input" type="radio" id="aluminumYes" name="aluminum" value="yes" onclick="calculateCarbonFootprint();">
+                <label for="yes-aluminum" class="form-check-label">Yes</label>
+                <input class="form-check-input" type="radio" id="aluminumNo" name="aluminum" value="no" onclick="calculateCarbonFootprint();">
+                <label for="no-aluminum" class="form-check-label">No</label>
+              </div>
+              <div class="mx-5 my-3">
+                <label for="recycle-result" class="form-label" id="recyclingResult">Your carbon footprint emissions from "Recycle":</label>
+                <br> <button type="button" class="btn btn-secondary" onclick="changeLayout('transport');calculateCarbonFootprint();">Previous</button>
+                <button id="recycleNextButton" type="button" class="btn btn-primary" onclick="changeLayout('result');calculateCarbonFootprint();">Next</button>
+              </div>
+            </form>
+            
+            <!--RESULT SECTION FOR CALCULATOR FORM-->
+            
+            <form id="result-form" class="d-none">
+              <h2 class="text-center p-4">Result</h2>
+              
+              <h4 id="carbonResult" class="text-center m-4 text-success">Your total carbon footprint emissions:</h2>
+  
+              <div class="mx-5 my-3">
+                <br> <button type="button" class="btn btn-secondary" onclick="changeLayout('recycle');calculateCarbonFootprint();">Previous</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        
+      <!--FAQ SECTION-->
+   
+      <div class="container">
+        <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center text-white">
+          <h1>FAQ</h1>
+          <p class="text-center" >(Frequently Asked Questions)</p>
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="panel panel-default panel-customize">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">What is a carbon footprint? </a>
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse">
+                        <div class="panel-body">A Carbon footprint is the measure of Carbon Dioxide an individual has released into the atmosphere due to their actions. This can include but is not limited to Transportation, Electricity, Recycling. </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                 <div class="panel panel-default panel-customize">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">How does the carbon footprint calculator work?</a>
+                        </h4>
+                    </div>
+                    <div id="collapse2" class="panel-collapse collapse">
+                        <div class="panel-body">The carbon footprint calculator is used to calculate an individual's total yearly carbon emissions by using algorithms to calculate emissions from Home, Transport and Recycling. </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                 <div class="panel panel-default panel-customize">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Why do I need to calculate my carbon footprint? </a>
+                        </h4>
+                    </div>
+                    <div id="collapse3" class="panel-collapse collapse">
+                        <div class="panel-body">Whether you’re an individual or a business, calculating your carbon footprint can be useful as it can make you aware of the impact you have on the environment and where to reduce usage to prevent waste and get closer to becoming carbon neutral </div>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <!--FAQ SECTION-->
-
-        <div class="container">
-            <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center text-white">
-                <h1>FAQ</h1>
-                <p class="text-center">(Frequently Asked Questions)</p>
+        <div class="row">
+            <div class="col-lg-4">
+                 <div class="panel panel-default panel-customize">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">What factors contribute to my carbon footprint?</a>
+                        </h4>
+                    </div>
+                    <div id="collapse4" class="panel-collapse collapse">
+                        <div class="panel-body">The most common factors that contribute to carbon emissions are: Energy Consumption, Transportation, Diet, Housing, Consumer goods and Waste. However, there are more factors but are much harder to calculate</div>
+                    </div>
+                </div>
             </div>
+            <div class="col-lg-4">
+                 <div class="panel panel-default panel-customize">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">Why is reducing carbon emissions important? </a>
+                        </h4>
+                    </div>
+                    <div id="collapse5" class="panel-collapse collapse">
+                        <div class="panel-body">Reducing carbon emissions helps in slowing climate change which helps in slowing the rate of temperature rise, ocean acidification and ice caps melting. It can also improve public health as it reduces air pollution. </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                 <div class="panel panel-default panel-customize">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">How much carbon emissions should I reduce to help make an impact? </a>
+                        </h4>
+                    </div>
+                    <div id="collapse6" class="panel-collapse collapse">
+                        <div class="panel-body">By 2030 the average emissions per person should reduce by 2-2.5tonnes per year to preserve a liveable climate </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                 <div class="panel panel-default panel-customize">
+                    
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse7">What units of measurement does a carbon footprint calculator use?</a>
+                        </h4>
+                    </div>
+                    <div id="collapse7" class="panel-collapse collapse">
+                        <div class="panel-body">Idk what units we're gonna use for yearly total</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                 <div class="panel panel-default panel-customize">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse8">How accurate is this Carbon Footprint Calculator?</a>
+                        </h4>
+                    </div>
+                    <div id="collapse8" class="panel-collapse collapse">
+                        <div class="panel-body">This carbon footprint calculator is relatively accurate aslong as the data being inputted is correct or as close to correct as possible</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                 <div class="panel panel-default panel-customize">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse9">What is the average Carbon footprint for an individual in a year? </a>
+                        </h4>
+                    </div>
+                    <div id="collapse9" class="panel-collapse collapse">
+                        <div class="panel-body">The average carbon footprint is about 10 tonnes of CO2 per person per year</div>
+                    </div>
+                </div>
+            </div>
+                   
+        
+                
+           <!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                
         </div>
 
         <!--FOOTER SECTION-->
@@ -162,5 +317,4 @@
         </footer>
     </div>
 </body>
-
 </html>

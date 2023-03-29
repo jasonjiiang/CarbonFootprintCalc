@@ -31,3 +31,14 @@ body {
     color: hsl(0, 88%, 3%);
     opacity: 0.8;
 }
+
+.panel-body {
+ color: black;
+ font-size: medium;
+
+}
+
+.panel-title
+{
+    font-weight:  bold;
+}

@@ -42,3 +42,11 @@ body {
 {
     font-weight:  bold;
 }
+
+.shadow {
+    text-shadow: 2px 2px 5px black, 0 0 1em black, 0 0 0.2em white;
+}
+
+#revertImage {
+    transform: scaleY(-1);
+}

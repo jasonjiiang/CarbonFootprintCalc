@@ -1,72 +1,123 @@
-let currentTab = "house";
+let currentTab = "type";
 let prevTab;
+let calc = "none";
 
 function changeTab(tab) {
-    prevTab = currentTab;
-    currentTab = tab;
+    if (calc == "none")
+    {
+        alert("Pick calculator type");
+    }
+    else
+    {
+        prevTab = currentTab;
+        currentTab = tab;
+    }
 }
 
 function changeLayout(tab)
 {
-    changeTab(tab)
+    changeTab(tab);
     if (currentTab != prevTab)
     {
         //Changes tab bar
         document.getElementById(currentTab+"-button").classList.add("active");
         document.getElementById(prevTab+"-button").classList.remove("active");
         //Changes calculator form
-        document.getElementById(currentTab+"-form").classList.add("d-block");
         document.getElementById(currentTab+"-form").classList.remove("d-none");
         document.getElementById(prevTab+"-form").classList.add("d-none");
-        document.getElementById(prevTab+"-form").classList.remove("d-block");
     }
+}
+
+function calcType(type)
+{
+    calc = type;
 }
 
 function extraForm(vis, div)
 {
-    if (vis)
+    if (calc == "simple")
     {
-        document.getElementById(div).classList.add("d-block");
-        document.getElementById(div).classList.remove("d-none");
-    } else {
-        document.getElementById(div).classList.add("d-none");
-        document.getElementById(div).classList.remove("d-block");
+        if (div == "multiple-car")
+        {
+            if (vis)
+            {
+                document.getElementById("car-usage").classList.remove("d-none");
+            } else {
+                document.getElementById("car-usage").classList.add("d-none");
+            }
+        }
+    }
+    else if (calc == "advanced")
+    {
+        if (vis)
+        {
+            document.getElementById(div).classList.remove("d-none");
+        } else {
+            document.getElementById(div).classList.add("d-none");
+        }
     }
 }
 
-function onCarAmount(num)
+function onCarAmount(num, e)
 {
+    let error = document.getElementById("car-error");
 
-    let p = '<p class="text-danger" id="car-error">Number must be over zero</p>';
-    let pExist = document.getElementById("car-error");
-
-    if (num <= 0)
+    if (num <= 1)
     {
-        if (!pExist)
-        {
-            document.getElementById("car-usage").insertAdjacentHTML('beforebegin', p);
-        }
+        error.classList.remove("d-none");
     } else {
-        if (pExist)
+        error.classList.add("d-none");
+
+        //Create new elements for the new form inputs as it is dynamic (during runtime). Whereas the others are static and does not need to change
+        let cars = document.getElementsByClassName("cars");
+
+        if (cars.length > 0)
         {
-            pExist.removeChild(pExist);
+            carFormRemove();
         }
-        //Create new elements for the new form inputs as it is dynamic, runs during runtime. Whereas the others are static and does not need to change
-        for (let i = 1; i <= num; i++)
-        {
-            let title = '<h4>Car ' + i + '</h3>';
-            document.getElementById("car-usage").insertAdjacentHTML('beforebegin', title);
-        }
+        carForm(num);
     }
 }
 
- //Function to calculate the total carbon footprint
- function calculateCarbonFootprint() {
+function carForm(num)
+{
+    for (let i = 1; i <= num; i++)
+    {
+        let title = '<h3>Car ' + i + '</h3>';
+        let emissionInput = '<div id="car-emissions' + i + '><label for="car-emissions' + i + '" class="form-label">Enter the emissions for "Car ' + i + 
+            '":</label><input type="number" class="form-control" id="car-emissions' + i + '"></div>';
+        let mileageInput = '<div id="car-mileages' + i + '"><label for="car-mileages' + i + '" class="form-label">Enter your total yearly mileage for "Car ' + i + 
+            '":</label><input type="number" class="form-control" id="car-mileages' + i + '"></div>';
+        document.getElementById("car-usage").insertAdjacentHTML('beforebegin', '<div class="mx-5 my-5 cars" id="car' + i + '">' + title + emissionInput + mileageInput + '</div>');
+    }
+}
+
+function carFormRemove()
+{
+    let cars = document.getElementsByClassName("cars");
+
+    for (let i = cars.length; i > 0; i--)
+    {
+        document.getElementById("car" + i).remove();
+    }
+}
+
+function pressEnter(num, e)
+{
+    let key = e;
+    if (key && key == 13)
+    {
+        onCarAmount(num);
+    }
+}
+
+//Function to calculate the total carbon footprint
+function calculateCarbonFootprint() {
     //Get the values entered in the form
     const electricityUsage = Number(document.getElementById("electricity-usage").value);
     const gasUsage = Number(document.getElementById("gas-usage").value);
     const oilUsage = Number(document.getElementById("oil-usage").value);
-    const carMileage = Number(document.getElementById("car-mileage").value);
+    const carMileage = Number(document.getElementById("car-usage-box").value);
     const flightsShort = Number(document.getElementById("flight-less-usage").value);
     const flightsLong = Number(document.getElementById("flight-over-usage").value);
     const newspaperRecyclingYes = document.getElementById("newspaperYes").checked;

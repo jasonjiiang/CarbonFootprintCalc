@@ -33,8 +33,8 @@
     
   <main id="parent" onscroll="scrollVis()">
     <div class="container">
-      <a id="up">
-        <img id="upArrow" class="fixed-top mx-auto d-none" src="..\assets\Down Arrow\Down Arrow 3.png" alt="upArrow" height="50vh">
+      <a id="up" class="d-none">
+        <img id="upArrow" class="fixed-top mx-auto" src="..\assets\Down Arrow\Down Arrow 3.png" alt="upArrow" height="50vh">
       </a>
 
       <!--ABOUT WEBSITE SECTION-->
@@ -83,8 +83,8 @@
               </div>
               
               <div class="m-5 position-absolute mx-auto start-0 end-0 text-center">
-                <button type="button" class="btn btn-primary p-3 m-5" onclick="calcType('simple')">Simple - best suited for the average layman</button>
-                <button type="button" class="btn btn-primary p-3 m-5" onclick="calcType('advanced')">Advanced - best suited for green activists</button>
+                <button type="button" class="btn btn-primary p-3 m-5" onclick="calcType('simple'); changeLayout('house')">Simple - best suited for the average layman</button>
+                <button type="button" class="btn btn-primary p-3 m-5" onclick="calcType('advanced'); changeLayout('house')">Advanced - best suited for green activists</button>
               </div>
             </form>
               
@@ -109,7 +109,8 @@
               </div>
               <div class="mx-5 my-3">
                 <label for="house-result" class="form-label" id="householdResult">Your carbon footprint emissions from "House":</label>
-                <br> <button type="button" class="btn btn-primary" onclick="changeLayout('transport'); calculateCarbonFootprint();">Next</button>
+                <br> <button type="button" class="btn btn-secondary" onclick="changeLayout('type'); calculateCarbonFootprint();">Previous</button>
+                <button type="button" class="btn btn-primary" onclick="changeLayout('transport'); calculateCarbonFootprint();">Next</button>
               </div>
             </form>
               
@@ -338,7 +339,7 @@
       </div>
 
       <a id="down" href="#calc">
-        <img id="downArrow" class="fixed-bottom mx-auto" src="..\assets\Down Arrow\Down Arrow 3.png" alt="downArrow" height="50vh">
+        <img class="fixed-bottom mx-auto" src="..\assets\Down Arrow\Down Arrow 3.png" alt="downArrow" height="50vh">
       </a>
     </div>
   </main>

@@ -111,6 +111,36 @@ function pressEnter(num, e)
     }
 }
 
+function scrollVis()
+{
+    let maxScroll = document.getElementById("parent").scrollHeight;
+    let scroll = (document.getElementById("parent").scrollTop / maxScroll) * 3;
+    console.log(scroll);
+
+    if (scroll <= 0.5) //top page - about
+    {
+        document.getElementById("nav").classList.remove("d-none");
+        document.getElementById("upArrow").classList.add("d-none");
+        document.getElementById("downArrow").classList.remove("d-none");
+        document.getElementById("down").href = "#calc";
+        document.getElementById("footer").classList.add("d-none");
+    }
+    else if (scroll >= 1.5) { //bottom page - faq
+        document.getElementById("nav").classList.add("d-none");
+        document.getElementById("upArrow").classList.remove("d-none");
+        document.getElementById("up").href = "#calc"
+        document.getElementById("downArrow").classList.add("d-none");
+        document.getElementById("footer").classList.remove("d-none");
+    } else { //middle page - calc
+        document.getElementById("nav").classList.add("d-none");
+        document.getElementById("upArrow").classList.remove("d-none");
+        document.getElementById("up").href = "#about"
+        document.getElementById("downArrow").classList.remove("d-none");
+        document.getElementById("down").href = "#faq";
+        document.getElementById("footer").classList.add("d-none");
+    }
+}
+
 //Function to calculate the total carbon footprint
 function calculateCarbonFootprint() {
     //Get the values entered in the form

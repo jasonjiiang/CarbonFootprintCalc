@@ -12,7 +12,7 @@ body {
     overflow-x: hidden;
 }
 
-.container {
+.section {
     scroll-snap-align: start;
 }
 
@@ -20,7 +20,7 @@ body {
     height: 50vh;
     width: 60vw;
     background-color: white;
-    border-radius: 40px;
+    border-radius: 25px;
     opacity: 97.5%;
 }
 
@@ -33,9 +33,8 @@ body {
 }
 
 .panel-body {
- color: black;
- font-size: medium;
-
+    color: black;
+    font-size: medium;
 }
 
 .panel-title
@@ -47,6 +46,6 @@ body {
     text-shadow: 2px 2px 5px black, 0 0 1em black, 0 0 0.2em white;
 }
 
-#revertImage {
+#upArrow {
     transform: scaleY(-1);
 }

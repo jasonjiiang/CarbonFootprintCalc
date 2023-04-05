@@ -30,11 +30,41 @@ function changeLayout(tab)
 
 function calcType(type)
 {
+    if (calc != "none")
+    {
+        let house =  document.getElementById("house-form");
+        let transport =  document.getElementById("transport-form");
+        let recycle =  document.getElementById("recycle-form");
+
+        let multipleCar = document.getElementById("multiple-car");
+        let carAmount = document.getElementById("car-amount");
+        let carUsage = document.getElementById("car-usage")
+        let cars = document.getElementsByClassName("cars");
+
+        house.reset();
+        transport.reset();
+        recycle.reset();
+
+        multipleCar.classList.add("d-none");
+        carAmount.classList.add("d-none");
+        carUsage.classList.add("d-none");
+
+        if (cars)
+        {
+            carFormRemove();
+        }
+    }
+
     calc = type;
 }
 
 function extraForm(vis, div)
 {
+    let multipleCar = document.getElementById("multipleYes");
+    let carAmount = document.getElementById("car-amount");
+    let carAmountInput = document.getElementById("car-amount-input").value
+    let cars = document.getElementsByClassName("cars");
+
     if (calc == "simple")
     {
         if (div == "multiple-car")
@@ -52,8 +82,42 @@ function extraForm(vis, div)
         if (vis)
         {
             document.getElementById(div).classList.remove("d-none");
+
+            if (div == "multiple-car")
+            {
+                if (multipleCar.checked == true)
+                {
+                    extraForm(true, "car-amount");
+                }
+                
+                if (carAmountInput)
+                {
+                    onCarAmount(carAmountInput);
+                }
+            }
+
+            if (multipleCar.checked == true)
+                {
+                    if (carAmountInput)
+                    {
+                        onCarAmount(carAmountInput);
+                    }
+                }
         } else {
             document.getElementById(div).classList.add("d-none");
+
+            if (div == "multiple-car")
+            {
+                if (carAmount)
+                {
+                    carAmount.classList.add("d-none");
+                }
+
+                if (cars)
+                {
+                    carFormRemove();
+                }
+            }
         }
     }
 }

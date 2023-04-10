@@ -96,6 +96,10 @@
                 <h2 class="text-center py-4 col-auto">House</h2>
               </div>
               <div class="mx-5 mb-3">
+                <label for="household" class="form-label">Enter the amount of people within your household:</label>
+                <input type="number" class="form-control" id="household">
+              </div>
+              <div class="mx-5 mb-3">
                 <label for="electricity-usage" class="form-label">Enter your monthly electricity bill:</label>
                 <input type="number" class="form-control" id="electricity-usage">
               </div>
@@ -122,7 +126,7 @@
                 <h2 class="text-center py-4 col-auto">Transport</h2>
               </div>
               <div class="mx-5 mb-3">
-                <label for="own-car" class="form-label">Do you own a car?</label>
+                <label for="own-car" class="form-label">Do you own a car or drive?</label>
                 <br> <input class="form-check-input" type="radio" id="carYes" name="car" value="yes" onclick="extraForm(true, 'multiple-car'); calculateCarbonFootprint();">
                 <label for="yes-car" class="form-check-label">Yes</label>
                 <input class="form-check-input" type="radio" id="carNo" name="car" value="no" onclick="extraForm(false, 'multiple-car'); calculateCarbonFootprint();">

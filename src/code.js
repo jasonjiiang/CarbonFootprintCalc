@@ -85,7 +85,7 @@ function extraForm(vis, div)
 
             if (div == "multiple-car")
             {
-                if (multipleCar.checked == true)
+                if (multipleCar.checked)
                 {
                     extraForm(true, "car-amount");
                 }
@@ -96,7 +96,7 @@ function extraForm(vis, div)
                 }
             }
 
-            if (multipleCar.checked == true)
+            if (multipleCar.checked)
                 {
                     if (carAmountInput)
                     {

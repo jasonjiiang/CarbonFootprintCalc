@@ -49,10 +49,7 @@ function calcType(type)
         carAmount.classList.add("d-none");
         carUsage.classList.add("d-none");
 
-        if (cars)
-        {
-            carFormRemove();
-        }
+        if (cars) carFormRemove();
     }
 
     calc = type;
@@ -85,44 +82,37 @@ function extraForm(vis, div)
 
             if (div == "multiple-car")
             {
-                if (multipleCar.checked)
-                {
-                    extraForm(true, "car-amount");
-                }
-                
-                if (carAmountInput)
-                {
-                    onCarAmount(carAmountInput);
-                }
+                if (multipleCar.checked) extraForm(true, "car-amount");
+                if (carAmountInput) onCarAmount(carAmountInput);
             }
 
             if (multipleCar.checked)
-                {
-                    if (carAmountInput)
-                    {
-                        onCarAmount(carAmountInput);
-                    }
-                }
+            {
+                if (carAmountInput) onCarAmount(carAmountInput);
+            }
+
+            if (div == "car-amount")
+            {
+                document.getElementById("car-usage").classList.add("d-none");
+            }
         } else {
             document.getElementById(div).classList.add("d-none");
 
             if (div == "multiple-car")
             {
-                if (carAmount)
-                {
-                    carAmount.classList.add("d-none");
-                }
+                if (carAmount) carAmount.classList.add("d-none");
+                if (cars) carFormRemove();
+            }
 
-                if (cars)
-                {
-                    carFormRemove();
-                }
+            if (div == "car-amount")
+            {
+                document.getElementById("car-usage").classList.remove("d-none");
             }
         }
     }
 }
 
-function onCarAmount(num, e)
+function onCarAmount(num)
 {
     let error = document.getElementById("car-error");
 
@@ -135,10 +125,7 @@ function onCarAmount(num, e)
         //Create new elements for the new form inputs as it is dynamic (during runtime). Whereas the others are static and does not need to change
         let cars = document.getElementsByClassName("cars");
 
-        if (cars.length > 0)
-        {
-            carFormRemove();
-        }
+        if (cars.length > 0) carFormRemove();
         carForm(num);
     }
 }
@@ -149,9 +136,9 @@ function carForm(num)
     {
         let title = '<h3>Car ' + i + '</h3>';
         let emissionInput = '<div id="car-emissions' + i + '><label for="car-emissions' + i + '" class="form-label">Enter the emissions for "Car ' + i + 
-            '":</label><input type="number" class="form-control" id="car-emissions' + i + '"></div>';
+            '":</label><input type="number" class="form-control" id="car-emissions-input' + i + '"></div>';
         let mileageInput = '<div id="car-mileages' + i + '"><label for="car-mileages' + i + '" class="form-label">Enter your total yearly mileage for "Car ' + i + 
-            '":</label><input type="number" class="form-control" id="car-mileages' + i + '"></div>';
+            '":</label><input type="number" class="form-control" id="car-mileages-input' + i + '"></div>';
         document.getElementById("car-usage").insertAdjacentHTML('beforebegin', '<div class="mx-5 my-5 cars" id="car' + i + '">' + title + emissionInput + mileageInput + '</div>');
     }
 }
@@ -169,10 +156,7 @@ function carFormRemove()
 function pressEnter(num, e)
 {
     let key = e;
-    if (key && key == 13)
-    {
-        onCarAmount(num);
-    }
+    if (key && key == 13) onCarAmount(num);
 }
 
 function scrollVis()
@@ -207,9 +191,32 @@ function scrollVis()
     }
 }
 
+function houseSectionComplete() {
+    const household = Number(document.getElementById("household").value);
+    const electricityUsage = Number(document.getElementById("electricity-usage").value);
+    const gasUsage = Number(document.getElementById("gas-usage").value);
+    const oilUsage = Number(document.getElementById("oil-usage").value);
+
+    const householdResult = document.getElementById("householdResult");
+
+    if (household && electricityUsage && gasUsage && oilUsage)
+    {
+        householdResult.classList.remove("text-danger");
+        return true;
+    }
+
+    householdResult.classList.add("text-danger");
+    householdResult.innerHTML = "Form not complete";
+}
+
+function transportSectionComplete() {
+    
+}
+
 //Function to calculate the total carbon footprint
 function calculateCarbonFootprint() {
     //Get the values entered in the form
+    const household = Number(document.getElementById("household").value);
     const electricityUsage = Number(document.getElementById("electricity-usage").value);
     const gasUsage = Number(document.getElementById("gas-usage").value);
     const oilUsage = Number(document.getElementById("oil-usage").value);
@@ -222,33 +229,37 @@ function calculateCarbonFootprint() {
     const aluminumRecyclingNo = document.getElementById("aluminumNo").checked;
     
     //Calculate the total carbon footprint
-    let houseEmissions = (electricityUsage * 105) + (gasUsage * 105) + (oilUsage * 113);
+    let houseEmissions = ((electricityUsage * 105) + (gasUsage * 105) + (oilUsage * 113)) / household;
     let transportEmissions = (carMileage * 0.79) + (flightsShort * 1100) + (flightsLong * 4400);
     let recycleEmissions = 0;
     let totalCarbonFootprint = houseEmissions + transportEmissions + recycleEmissions;
-    if (newspaperRecyclingNo===true) {
-    recycleEmissions += 184;   
-    totalCarbonFootprint += 184;
+
+    if (newspaperRecyclingNo === true) {
+        recycleEmissions += 184;   
+        totalCarbonFootprint += 184;
     }
-    if (aluminumRecyclingNo===true) {
-    recycleEmissions += 166;
-    totalCarbonFootprint += 166;
+
+    if (aluminumRecyclingNo === true) {
+        recycleEmissions += 166;
+        totalCarbonFootprint += 166;
     }
-    //Debugging
-    console.log(electricityUsage);
-    console.log(gasUsage);
-    console.log(oilUsage);
-    console.log(carMileage);
-    console.log(flightsShort);
-    console.log(flightsLong);
-    console.log(newspaperRecyclingYes);
-    console.log(newspaperRecyclingNo);
-    console.log(aluminumRecyclingYes);
-    console.log(aluminumRecyclingNo);
-    console.log(totalCarbonFootprint);
-    //Display the result
-    document.getElementById("householdResult").innerHTML = `Your total household carbon footprint is ${houseEmissions.toFixed(2)} kg CO<sub>2</sub>e per year.`;
+
+    //Display the results
+    if (houseSectionComplete())
+    {
+        document.getElementById("householdResult").innerHTML = `Your total household carbon footprint is ${houseEmissions.toFixed(2)} kg CO<sub>2</sub>e per year.`;
+    }
+    
     document.getElementById("transportResult").innerHTML = `Your total transport carbon footprint is ${transportEmissions.toFixed(2)} kg CO<sub>2</sub>e per year.`;
     document.getElementById("recyclingResult").innerHTML = `Your total recycling carbon footprint is ${recycleEmissions.toFixed(2)} kg CO<sub>2</sub>e per year.`;
-    document.getElementById("carbonResult").innerHTML = `Your total carbon footprint is ${totalCarbonFootprint.toFixed(2)} kg CO<sub>2</sub>e per year.`;
+
+    //For the result section
+    if (houseSectionComplete())
+    {
+        document.getElementById("houseResultSection").innerHTML = `House carbon footprint emissions: ${houseEmissions.toFixed(2)} kg CO<sub>2</sub>e per year.`;
+    }
+    
+    document.getElementById("transportResultSection").innerHTML = `Transport carbon footprint emissions: ${transportEmissions.toFixed(2)} kg CO<sub>2</sub>e per year.`;
+    document.getElementById("recycleResultSection").innerHTML = `Recycle carbon footprint emissions: ${recycleEmissions.toFixed(2)} kg CO<sub>2</sub>e per year.`;
+    document.getElementById("totalCarbonResult").innerHTML = `Total carbon footprint: ${totalCarbonFootprint.toFixed(2)} kg CO<sub>2</sub>e per year.`;
 } 

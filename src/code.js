@@ -72,12 +72,11 @@ function extraForm(vis, div)
         if (vis)
         {
             if (div == "multiple-car") carUsage.classList.remove("d-none");
-            if (div == "flights-taken") flightsTaken.classList.remove("d-none");
+            else if (div == "flights-taken") flightsTaken.classList.remove("d-none");
             return;
         }
-
-        if (div == "multiple-car") carUsage.classList.add("d-none");
-        if (div == "flights-taken") flightsTaken.classList.add("d-none");
+        else if (div == "multiple-car") carUsage.classList.add("d-none");
+        else if (div == "flights-taken") flightsTaken.classList.add("d-none");
     }
     else if (calc == "advanced")
     {
@@ -87,19 +86,15 @@ function extraForm(vis, div)
             {
                 document.getElementById("multiple-car").classList.remove("d-none");
                 if (multipleCar) extraForm(true, "car-amount");
-                if (noMultipleCar) extraForm(false, "car-amount");
-                if (!noMultipleCar && carAmountInput) onCarAmount(carAmountInput);
+                else if (noMultipleCar) extraForm(false, "car-amount");
+                else if (!noMultipleCar && carAmountInput) onCarAmount(carAmountInput);
             }
-
-            if (multipleCar && carAmountInput) onCarAmount(carAmountInput);
-
-            if (div == "car-amount")
+            else if (div == "car-amount")
             {
                 carAmount.classList.remove("d-none");
                 carUsage.classList.add("d-none");
             }
-
-            if (div == "flights-taken") flightsTaken.classList.remove("d-none");
+            else if (div == "flights-taken") flightsTaken.classList.remove("d-none");
             return;
         }
 
@@ -110,14 +105,12 @@ function extraForm(vis, div)
             carAmount.classList.add("d-none");
             if (cars) carFormRemove();
         }
-
-        if (div == "car-amount")
+        else if (div == "car-amount")
         {
             carAmount.classList.add("d-none");
             carUsage.classList.remove("d-none");
         }
-
-        if (div == "flights-taken") flightsTaken.classList.add("d-none");
+        else if (div == "flights-taken") flightsTaken.classList.add("d-none");
     }
 }
 
@@ -198,6 +191,18 @@ function scrollVis()
     }
 }
 
+function resultTextError(bool, label)
+{
+    if (bool)
+    {
+        label.classList.remove("text-danger");
+        return true;
+    }
+
+    label.classList.add("text-danger");
+    label.innerHTML = "Form not complete";
+}
+
 function houseSectionComplete() {
     const household = Number(document.getElementById("household").value);
     const electricityUsage = Number(document.getElementById("electricity-usage").value);
@@ -208,12 +213,10 @@ function houseSectionComplete() {
 
     if (household && electricityUsage && gasUsage && oilUsage)
     {
-        householdResult.classList.remove("text-danger");
-        return true;
+        return resultTextError(true, householdResult);
     }
 
-    householdResult.classList.add("text-danger");
-    householdResult.innerHTML = "Form not complete";
+    resultTextError(false, householdResult);
 }
 
 function transportSectionComplete() {
@@ -229,31 +232,14 @@ function transportSectionComplete() {
 
     const transportResult = document.getElementById("transportResult");
 
-    if (carNo && flightNo)
+    if ((carNo && flightNo) ||
+        (carEmission && carMile && flightNo && !carNo && !multipleCar) ||
+        (flightsShort && flightsLong && carNo && !flightNo) ||
+        (carEmission && carMile && flightsShort && flightsLong && !carNo && !flightNo && !multipleCar))
     {
-        transportResult.classList.remove("text-danger");
-        return true;
+        return resultTextError(true, transportResult);
     }
-
-    if (carEmission && carMile && flightNo && !carNo && !multipleCar)
-    {
-        transportResult.classList.remove("text-danger");
-        return true;
-    }
-
-    if (flightsShort && flightsLong && carNo && !flightNo)
-    {
-        transportResult.classList.remove("text-danger");
-        return true;
-    }
-
-    if (carEmission && carMile && flightsShort && flightsLong && !carNo && !flightNo && !multipleCar)
-    {
-        transportResult.classList.remove("text-danger");
-        return true;
-    }
-
-    if (multipleCar && cars && carAmountInput)
+    else if (multipleCar && carAmountInput && cars)
     {
         let carsFilled = true;
 
@@ -269,15 +255,13 @@ function transportSectionComplete() {
             }
         }
 
-        if ((flightsShort && flightsLong && !flightNo && carsFilled) || ((flightNo && carsFilled)))
+        if ((flightsShort && flightsLong && !flightNo && carsFilled) || (flightNo && carsFilled))
         {
-            transportResult.classList.remove("text-danger");
-            return true
+            return resultTextError(true, transportResult)
         }
     }
     
-    transportResult.classList.add("text-danger");
-    transportResult.innerHTML = "Form not complete";
+    resultTextError(false, transportResult);
 }
 
 function recycleSectionComplete() {
@@ -288,14 +272,9 @@ function recycleSectionComplete() {
 
     const recyclingResult = document.getElementById("recyclingResult");
 
-    if ((newspaperRecyclingYes || newspaperRecyclingNo) && (aluminumRecyclingYes || aluminumRecyclingNo))
-    {
-        recyclingResult.classList.remove("text-danger");
-        return true;
-    }
+    if ((newspaperRecyclingYes || newspaperRecyclingNo) && (aluminumRecyclingYes || aluminumRecyclingNo)) return resultTextError(true, recyclingResult);
     
-    recyclingResult.classList.add("text-danger");
-    recyclingResult.innerHTML = "Form not complete";
+    resultTextError(false, recyclingResult);
 }
 
 //Function to calculate the total carbon footprint
@@ -308,6 +287,7 @@ function calculateCarbonFootprint() {
     const carNo = document.getElementById("carNo").checked;
     const carEmission = Number(document.getElementById("car-emission-box").value); //Not yet used
     const carMileage = Number(document.getElementById("car-usage-box").value);
+    const cars = document.getElementsByClassName("cars");
     const flightNo = document.getElementById("flightNo").checked;
     const flightsShort = Number(document.getElementById("flight-less-usage").value);
     const flightsLong = Number(document.getElementById("flight-over-usage").value);
@@ -321,6 +301,17 @@ function calculateCarbonFootprint() {
 
     if (!carNo) transportEmissions += (carMileage * 0.79);
     if (!flightNo) transportEmissions += ((flightsShort * 1100) + (flightsLong * 4400));
+
+    if (cars)
+    {
+        for (let i = cars.length; i > 0; i--)
+        {
+            let emission = document.getElementById("car-emissions-input" + i).value;
+            let mileage = document.getElementById("car-mileages-input" + i).value;
+
+            transportEmissions += (mileage * 0.79);
+        }
+    }
 
     if (newspaperRecyclingNo) recycleEmissions += 184;
     if (aluminumRecyclingNo) recycleEmissions += 166;

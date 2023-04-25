@@ -141,7 +141,7 @@
               </div>
               <div class="mx-5 my-3 d-none" id="car-amount">
                 <label for="car-amount" class="form-label">Enter amount of cars:</label>
-                <input type="number" class="form-control" id="car-amount-input" min="1" onchange="onCarAmount(document.getElementById('car-amount-input').value)" onkeypress="pressEnter(document.getElementById('car-amount-input').value, event)">
+                <input type="number" class="form-control" id="car-amount-input" min="1" onchange="onCarAmount(document.getElementById('car-amount-input').value); calculateCarbonFootprint();" onkeypress="pressEnter(document.getElementById('car-amount-input').value, event)">
                 <p class="text-danger d-none" id="car-error">Number must be one or over for multiple cars, otherwise change the input above</p>
               </div>
               <div class="mx-5 my-3 d-none" id="car-usage">

@@ -58,10 +58,7 @@
 
             <ul class="nav nav-tabs justify-content-center">
               <li class="nav-item">
-                <button type="button" class="nav-link active" id="type-button" onclick="changeLayout('type')">Type</button>
-              </li>
-              <li class="nav-item">
-                <button type="button" class="nav-link" id="house-button" onclick="changeLayout('house')">House</button>
+                <button type="button" class="nav-link active" id="house-button" onclick="changeLayout('house')">House</button>
               </li>
               <li class="nav-item">
                 <button type="button" class="nav-link" id="transport-button" onclick="changeLayout('transport')">Transport</button>
@@ -73,24 +70,10 @@
                 <button type="button" class="nav-link" id="result-button" onclick="changeLayout('result')">Result</button>
               </li>
             </ul>
-
-            <!--TYPE SECTION FOR CALCULATOR FORM-->
-        
-            <form id="type-form">
-              <div class="mx-5 my-3 row">
-                <img class="col-auto" src="..\assets\gear\gear.png" alt="gear" height="75vh">
-                <h2 class="text-center py-4 col-auto">Type</h2>
-              </div>
-              
-              <div class="m-5 position-absolute mx-auto start-0 end-0 text-center">
-                <button type="button" class="btn btn-primary p-3 m-5" onclick="calcType('simple'); changeLayout('house')">Simple - best suited for the average layman</button>
-                <button type="button" class="btn btn-primary p-3 m-5" onclick="calcType('advanced'); changeLayout('house')">Advanced - best suited for green activists</button>
-              </div>
-            </form>
               
             <!--HOUSE SECTION FOR CALCULATOR FORM-->
               
-            <form id="house-form" class="d-none">
+            <form id="house-form">
               <div class="mx-5 my-3 row">
                 <img class="col-auto" src="..\assets\House\House.png" alt="house" height="75vh">
                 <h2 class="text-center py-4 col-auto">House</h2>
@@ -145,7 +128,7 @@
                 <p class="text-danger d-none" id="car-error">Number must be one or over for multiple cars, otherwise change the input above</p>
               </div>
               <div class="mx-5 my-3 d-none" id="car-usage">
-                <label for="car-emission" class="form-label">Enter the car emissions:</label>
+                <label for="car-emission" class="form-label">Enter the car emissions per g/km:</label>
                 <input type="number" class="form-control" id="car-emission-box" onchange="calculateCarbonFootprint()">
                 <label for="car-usage" class="form-label">Enter your total yearly mileage by car:</label>
                 <input type="number" class="form-control" id="car-usage-box" onchange="calculateCarbonFootprint()">
@@ -209,7 +192,8 @@
               <h4 id="houseResultSection" class="text-center m-4">House carbon footprint emissions:</h4>
               <h4 id="transportResultSection" class="text-center m-4">Transport carbon footprint emissions:</h4>
               <h4 id="recycleResultSection" class="text-center m-4">Recycle carbon footprint emissions:</h4>
-              <h3 id="totalCarbonResult" class="text-center m-4 text-success">Your total carbon footprint emissions:</h3>
+              <h3 id="totalCarbonResult" class="text-center m-4 text-success">Total carbon footprint emissions:</h3>
+              <h6 id="averageDiff" class="text-center m-4">% above/below average</h6>
     
               <div class="mx-5 my-3">
                 <br> <button type="button" class="btn btn-secondary" onclick="changeLayout('recycle')">Previous</button>
@@ -315,7 +299,7 @@
                   </h4>
                 </div>
                 <div id="collapse7" class="panel-collapse collapse">
-                  <div class="panel-body">We currently use "kg CO<sub>2</sub>e" to calculate your annual carbon footprint.</div>
+                  <div class="panel-body">We currently use "tonnes of CO<sub>2</sub>e" to calculate your annual carbon footprint.</div>
                 </div>
               </div>
             </div>

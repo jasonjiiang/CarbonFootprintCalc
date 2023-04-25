@@ -1,14 +1,7 @@
-let currentTab = "type";
+let currentTab = "house";
 let prevTab;
-let calc = "none";
 
 function changeTab(tab) {
-    if (calc == "none")
-    {
-        alert("Pick calculator type");
-        return;
-    }
-
     prevTab = currentTab;
     currentTab = tab;
 }
@@ -27,36 +20,6 @@ function changeLayout(tab)
     }
 }
 
-function calcType(type)
-{
-    if (calc != "none")
-    {
-        let house =  document.getElementById("house-form");
-        let transport =  document.getElementById("transport-form");
-        let recycle =  document.getElementById("recycle-form");
-
-        let multipleCar = document.getElementById("multiple-car");
-        let carAmount = document.getElementById("car-amount");
-        let carUsage = document.getElementById("car-usage")
-        let cars = document.getElementsByClassName("cars");
-        let flightsTaken = document.getElementById("flights-taken");
-
-        house.reset();
-        transport.reset();
-        recycle.reset();
-
-        multipleCar.classList.add("d-none");
-        carAmount.classList.add("d-none");
-        carUsage.classList.add("d-none");
-
-        if (cars) carFormRemove();
-
-        flightsTaken.classList.add("d-none");
-    }
-
-    calc = type;
-}
-
 function extraForm(vis, div)
 {
     const multipleCar = document.getElementById("multipleYes").checked;
@@ -67,51 +30,37 @@ function extraForm(vis, div)
     const cars = document.getElementsByClassName("cars");
     const flightsTaken = document.getElementById("flights-taken");
 
-    if (calc == "simple")
+    if (vis)
     {
-        if (vis)
-        {
-            if (div == "multiple-car") carUsage.classList.remove("d-none");
-            else if (div == "flights-taken") flightsTaken.classList.remove("d-none");
-            return;
-        }
-        else if (div == "multiple-car") carUsage.classList.add("d-none");
-        else if (div == "flights-taken") flightsTaken.classList.add("d-none");
-    }
-    else if (calc == "advanced")
-    {
-        if (vis)
-        {
-            if (div == "multiple-car")
-            {
-                document.getElementById("multiple-car").classList.remove("d-none");
-                if (multipleCar) extraForm(true, "car-amount");
-                else if (noMultipleCar) extraForm(false, "car-amount");
-                else if (!noMultipleCar && carAmountInput) onCarAmount(carAmountInput);
-            }
-            else if (div == "car-amount")
-            {
-                carAmount.classList.remove("d-none");
-                carUsage.classList.add("d-none");
-            }
-            else if (div == "flights-taken") flightsTaken.classList.remove("d-none");
-            return;
-        }
-
         if (div == "multiple-car")
         {
-            document.getElementById("multiple-car").classList.add("d-none");
-            carUsage.classList.add("d-none");
-            carAmount.classList.add("d-none");
-            if (cars) carFormRemove();
+            document.getElementById("multiple-car").classList.remove("d-none");
+            if (multipleCar) extraForm(true, "car-amount");
+            else if (noMultipleCar) extraForm(false, "car-amount");
+            else if (!noMultipleCar && carAmountInput) onCarAmount(carAmountInput);
         }
         else if (div == "car-amount")
         {
-            carAmount.classList.add("d-none");
-            carUsage.classList.remove("d-none");
+            carAmount.classList.remove("d-none");
+            carUsage.classList.add("d-none");
         }
-        else if (div == "flights-taken") flightsTaken.classList.add("d-none");
+        else if (div == "flights-taken") flightsTaken.classList.remove("d-none");
+        return;
     }
+
+    if (div == "multiple-car")
+    {
+        document.getElementById("multiple-car").classList.add("d-none");
+        carUsage.classList.add("d-none");
+        carAmount.classList.add("d-none");
+       if (cars) carFormRemove();
+    }
+    else if (div == "car-amount")
+    {
+        carAmount.classList.add("d-none");
+        carUsage.classList.remove("d-none");
+    }
+    else if (div == "flights-taken") flightsTaken.classList.add("d-none");
 }
 
 function onCarAmount(num)
@@ -299,7 +248,7 @@ function calculateCarbonFootprint() {
     let transportEmissions = 0;
     let recycleEmissions = 0;
 
-    if (!carNo) transportEmissions += (carMileage * 0.79);
+    if (!carNo) transportEmissions += (carEmission * (carMileage * 1.60934));
     if (!flightNo) transportEmissions += ((flightsShort * 1100) + (flightsLong * 4400));
 
     if (cars)
@@ -309,13 +258,18 @@ function calculateCarbonFootprint() {
             let emission = document.getElementById("car-emissions-input" + i).value;
             let mileage = document.getElementById("car-mileages-input" + i).value;
 
-            transportEmissions += (mileage * 0.79);
+            transportEmissions += (emission * (mileage * 1.60934));
         }
     }
 
     if (newspaperRecyclingNo) recycleEmissions += 184;
     if (aluminumRecyclingNo) recycleEmissions += 166;
 
+    //Convert to tonnes
+    houseEmissions = houseEmissions / 1000
+    transportEmissions = transportEmissions / 1000000
+    recycleEmissions = recycleEmissions / 1000
+    
     let totalCarbonFootprint = houseEmissions + transportEmissions + recycleEmissions;
 
     //Result labels
@@ -326,16 +280,30 @@ function calculateCarbonFootprint() {
     const transportResultSection = document.getElementById("transportResultSection");
     const recyclingResultSection = document.getElementById("recycleResultSection");
     const totalCarbonResult = document.getElementById("totalCarbonResult");
+    const averageResult = document.getElementById("averageDiff");
 
     //Display the results
-    if (houseSectionComplete()) householdResult.innerHTML = `Your total household carbon footprint is ${houseEmissions.toFixed(2)} kg CO<sub>2</sub>e per year.`;
-    if (transportSectionComplete()) transportResult.innerHTML = `Your total transport carbon footprint is ${transportEmissions.toFixed(2)} kg CO<sub>2</sub>e per year.`;
-    if (recycleSectionComplete()) recyclingResult.innerHTML = `Your total recycling carbon footprint is ${recycleEmissions.toFixed(2)} kg CO<sub>2</sub>e per year.`;
+    if (houseSectionComplete()) householdResult.innerHTML = `Your total household carbon footprint is ${houseEmissions.toFixed(2)} tonnes of CO<sub>2</sub>e per year.`;
+    if (transportSectionComplete()) transportResult.innerHTML = `Your total transport carbon footprint is ${transportEmissions.toFixed(2)} tonnes of CO<sub>2</sub>e per year.`;
+    if (recycleSectionComplete()) recyclingResult.innerHTML = `Your total recycling carbon footprint is ${recycleEmissions.toFixed(2)} tonnes of CO<sub>2</sub>e per year.`;
 
     //For the result section
-    if (houseSectionComplete()) householdResultSection.innerHTML = `House carbon footprint emissions: ${houseEmissions.toFixed(2)} kg CO<sub>2</sub>e per year.`;
-    if (transportSectionComplete()) transportResultSection.innerHTML = `Transport carbon footprint emissions: ${transportEmissions.toFixed(2)} kg CO<sub>2</sub>e per year.`;
-    if (recycleSectionComplete()) recyclingResultSection.innerHTML = `Recycle carbon footprint emissions: ${recycleEmissions.toFixed(2)} kg CO<sub>2</sub>e per year.`;
+    if (houseSectionComplete()) householdResultSection.innerHTML = `House carbon footprint emissions: ${houseEmissions.toFixed(2)} tonnes of CO<sub>2</sub>e per year.`;
+    if (transportSectionComplete()) transportResultSection.innerHTML = `Transport carbon footprint emissions: ${transportEmissions.toFixed(2)} tonnes of CO<sub>2</sub>e per year.`;
+    if (recycleSectionComplete()) recyclingResultSection.innerHTML = `Recycle carbon footprint emissions: ${recycleEmissions.toFixed(2)} tonnes of CO<sub>2</sub>e per year.`;
     
-    totalCarbonResult.innerHTML = `Total carbon footprint: ${totalCarbonFootprint.toFixed(2)} kg CO<sub>2</sub>e per year.`;
+    totalCarbonResult.innerHTML = `Total carbon footprint: ${totalCarbonFootprint.toFixed(2)} tonnes of CO<sub>2</sub>e per year.`;
+
+    //Calculates the difference between the user's footprint against the average
+    const average  = 10
+    const belowAverage = (((totalCarbonFootprint - average) / totalCarbonFootprint) * 100) / -1;
+    const aboveAverage = (((average - totalCarbonFootprint) / average) * 100) /-1;
+
+    if (totalCarbonFootprint < 10)
+    {
+        averageResult.innerHTML =  `${Math.round(belowAverage)}% below average`;
+        return;
+    }
+
+    averageResult.innerHTML = `${Math.round(aboveAverage)}% above average`;
 } 

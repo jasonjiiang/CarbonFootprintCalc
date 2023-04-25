@@ -1,5 +1,5 @@
 body {
-    background-image: url('../assets/pexels-pixabay-163703.jpg');
+    background-image: url('../assets/backgrounds/pexels-pixabay-163703.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -12,7 +12,7 @@ body {
     overflow-x: hidden;
 }
 
-.container {
+.section {
     scroll-snap-align: start;
 }
 
@@ -20,7 +20,7 @@ body {
     height: 50vh;
     width: 60vw;
     background-color: white;
-    border-radius: 40px;
+    border-radius: 25px;
     opacity: 97.5%;
 }
 
@@ -33,12 +33,19 @@ body {
 }
 
 .panel-body {
- color: black;
- font-size: medium;
-
+    color: black;
+    font-size: medium;
 }
 
 .panel-title
 {
     font-weight:  bold;
+}
+
+.shadow {
+    text-shadow: 2px 2px 5px black, 0 0 1em black, 0 0 0.2em white;
+}
+
+#upArrow {
+    transform: scaleY(-1);
 }
